@@ -18,7 +18,7 @@ Login = React.createClass({
           <div className="row"> 
             <div className="col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4"> 
               <img src="/flat-avatar.png" className="user-avatar" /> 
-              <h1>nXHuman <br /><small>Case Authoring Tool</small></h1> 
+              <h1>nXHuman4 <br /><small>Case Authoring Tool</small></h1> 
               <form role="form" className="ng-pristine ng-valid"> 
                 <div className="form-content"> 
                   <div className="form-group"> 
