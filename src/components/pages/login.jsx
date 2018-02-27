@@ -1,3 +1,12 @@
+// Fix this with the actual configuration file path
+import config from "../config";
+
+import {
+  CognitoUserPool,
+  AuthenticationDetails,
+  CognitoUser
+} from "amazon-cognito-identity-js";
+
 Login = React.createClass({
 
   componentDidMount(){
@@ -10,6 +19,34 @@ Login = React.createClass({
       $(".login-page").removeClass("ng-enter-active");
     }, 600);
   },
+
+login(email, password) {
+  const userPool = new CognitoUserPool({
+    UserPoolId: config.cognito.USER_POOL_ID,
+    ClientId: config.cognito.APP_CLIENT_ID
+  });
+  const user = new CognitoUser({ Username: email, Pool: userPool });
+  const authenticationData = { Username: email, Password: password };
+  const authenticationDetails = new AuthenticationDetails(authenticationData);
+
+  return new Promise((resolve, reject) =>
+    user.authenticateUser(authenticationDetails, {
+      onSuccess: result => resolve(),
+      onFailure: err => reject(err)
+    })
+  );
+}
+
+  handleSubmit = async event => {
+  event.preventDefault();
+
+  try {
+    await this.login(this.state.email, this.state.password);
+    alert("Logged in");
+  } catch (e) {
+    alert(e);
+  }
+}
 
   render: function() {
     return (
