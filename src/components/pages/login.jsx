@@ -1,5 +1,4 @@
-// Fix this with the actual configuration file path
-import config from "../config";
+import config from "/router.jsx";
 
 import {
   CognitoUserPool,
@@ -35,10 +34,8 @@ login(email, password) {
       onFailure: err => reject(err)
     })
   );
-}
-
-  handleSubmit = async event => {
-  event.preventDefault();
+handleSubmit = async event => {
+event.preventDefault();
 
   try {
     await this.login(this.state.email, this.state.password);
@@ -47,6 +44,10 @@ login(email, password) {
     alert(e);
   }
 }
+
+
+},
+
 
   render: function() {
     return (
